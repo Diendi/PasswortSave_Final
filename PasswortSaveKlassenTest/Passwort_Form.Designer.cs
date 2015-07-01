@@ -50,6 +50,7 @@
             this.btn_SaveNew = new System.Windows.Forms.Button();
             this.errorProvider_new = new System.Windows.Forms.ErrorProvider(this.components);
             this.btn_new_generator = new System.Windows.Forms.Button();
+            this.tbx_UserConfig = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Liste)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_new)).BeginInit();
             this.SuspendLayout();
@@ -228,7 +229,7 @@
             // 
             // btn_SaveNew
             // 
-            this.btn_SaveNew.Location = new System.Drawing.Point(671, 340);
+            this.btn_SaveNew.Location = new System.Drawing.Point(671, 318);
             this.btn_SaveNew.Name = "btn_SaveNew";
             this.btn_SaveNew.Size = new System.Drawing.Size(75, 23);
             this.btn_SaveNew.TabIndex = 28;
@@ -243,7 +244,7 @@
             // 
             // btn_new_generator
             // 
-            this.btn_new_generator.Location = new System.Drawing.Point(753, 339);
+            this.btn_new_generator.Location = new System.Drawing.Point(752, 318);
             this.btn_new_generator.Name = "btn_new_generator";
             this.btn_new_generator.Size = new System.Drawing.Size(75, 23);
             this.btn_new_generator.TabIndex = 29;
@@ -252,11 +253,21 @@
             this.btn_new_generator.Visible = false;
             this.btn_new_generator.Click += new System.EventHandler(this.btn_new_generator_Click);
             // 
+            // tbx_UserConfig
+            // 
+            this.tbx_UserConfig.Location = new System.Drawing.Point(671, 358);
+            this.tbx_UserConfig.Multiline = true;
+            this.tbx_UserConfig.Name = "tbx_UserConfig";
+            this.tbx_UserConfig.ReadOnly = true;
+            this.tbx_UserConfig.Size = new System.Drawing.Size(274, 185);
+            this.tbx_UserConfig.TabIndex = 30;
+            // 
             // Passwort_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(957, 602);
+            this.Controls.Add(this.tbx_UserConfig);
             this.Controls.Add(this.btn_new_generator);
             this.Controls.Add(this.btn_SaveNew);
             this.Controls.Add(this.tbx_newPassword);
@@ -310,5 +321,6 @@
         private System.Windows.Forms.Button btn_SaveNew;
         private System.Windows.Forms.ErrorProvider errorProvider_new;
         private System.Windows.Forms.Button btn_new_generator;
+        private System.Windows.Forms.TextBox tbx_UserConfig;
     }
 }

@@ -17,7 +17,11 @@ namespace PasswortSaveKlassenTest
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Überprüft ob Eingabe richtig ist und gibt öffnet bei richtiger Eingabe die nächste Form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOK_Click(object sender, EventArgs e)
         {
             bool right = false;
@@ -55,7 +59,11 @@ namespace PasswortSaveKlassenTest
                 errorProvider_password.SetError(tbx_password, "You entered the wrong password");
             }
         }
-
+        /// <summary>
+        /// Schließt die ganze Application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Application.Exit();

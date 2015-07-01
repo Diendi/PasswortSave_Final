@@ -14,16 +14,24 @@ namespace PasswortSaveKlassenTest
     {
         char[] sonderzeichen;
         
-        
+        /// <summary>
+        /// Ladet Textbox mit Informationen für anwender
+        /// </summary>
         public AnlegenBenutzer()
         {
             InitializeComponent();
-            tbx_Info.Text = "Info Box " + Environment.NewLine + "the maximum value of the numeric up down elemts are 100." + Environment.NewLine +  
-                            "The maximum value must be higher then the minimum value, because otherwise an error will occur"+Environment.NewLine+
-                            "The value of the non letters numeric up down element must be higher then the value of the minimum nud and lower"+Environment.NewLine+
-                            "then the value of the max nud.";
+            tbx_Info.Text = "Info Box " + Environment.NewLine + "the maximum value of the numeric up down elemts are 100." + Environment.NewLine + Environment.NewLine +
+                            "The maximum value must be higher then the minimum value, because otherwise an error will occur" + Environment.NewLine + Environment.NewLine +
+                            "The value of the non letters numeric up down element must be higher then the value of the minimum nud and lower" + Environment.NewLine +
+                            "then the value of the max nud."+Environment.NewLine+Environment.NewLine+
+                            "If the error provider says the username is wrong, the username contains a space! This is not allowed!"+Environment.NewLine+Environment.NewLine+
+                            "If any mistake orrcur, please look at the developer handbook!";
         }
-
+        /// <summary>
+        /// Überprüft Eingabe und legt bei richtiger Eingabe einen neuen User an.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
             bool status_ep_value = true;
@@ -127,10 +135,19 @@ namespace PasswortSaveKlassenTest
                     Start erneut = new Start();
                     erneut.Show();
                     this.Hide();
+                    errorProvider_last.Clear();
+                }
+                else
+                {
+                    errorProvider_last.SetError(btnSave, code.ToString());
                 }
             }
         }
-
+        /// <summary>
+        /// schließt die gesamte Anwendung
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Application.Exit();

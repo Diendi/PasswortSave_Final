@@ -52,6 +52,7 @@
             this.tbx_password = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.ep_non_min = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider_last = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nud_min)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_max)).BeginInit();
             this.flp_Size.SuspendLayout();
@@ -62,6 +63,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_special)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_doppelt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ep_non_min)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_last)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -157,7 +159,8 @@
             this.tbx_Info.Multiline = true;
             this.tbx_Info.Name = "tbx_Info";
             this.tbx_Info.ReadOnly = true;
-            this.tbx_Info.Size = new System.Drawing.Size(223, 201);
+            this.tbx_Info.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbx_Info.Size = new System.Drawing.Size(223, 346);
             this.tbx_Info.TabIndex = 8;
             // 
             // label4
@@ -252,6 +255,10 @@
             // 
             this.ep_non_min.ContainerControl = this;
             // 
+            // errorProvider_last
+            // 
+            this.errorProvider_last.ContainerControl = this;
+            // 
             // AnlegenBenutzer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -286,6 +293,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_special)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_doppelt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ep_non_min)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider_last)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -316,5 +324,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tbx_password;
         private System.Windows.Forms.ErrorProvider ep_non_min;
+        private System.Windows.Forms.ErrorProvider errorProvider_last;
     }
 }

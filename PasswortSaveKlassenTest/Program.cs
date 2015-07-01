@@ -47,6 +47,8 @@ namespace PasswortSaveKlassenTest
                 //Speichern der Passwortdatei des Users
                 //Data.SchreibeDatei(@"..\kreuzer.bin", benutzerdaten, user[0].Passwort.Passwort, user[0].Benutzername);
 
+                //Testreiber erstellen:
+
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Start());

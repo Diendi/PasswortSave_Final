@@ -15,12 +15,24 @@ namespace PasswortSaveKlassenTest
         Data.ReturnCode ret;
         DataTable data_table = new DataTable();
         int anzahl_elemente = 0;
+        /// <summary>
+        /// Beim Aufrufen der Form wird das Data-Grid View mit Daten gefüllt.
+        /// </summary>
         public Passwort_Form()
         {
             InitializeComponent();
+            
             try
             {
-
+                string special = "";
+                for (int i=0; i<Program.user[Login_Form.index].Passwort.PasswortEigenschaften.minimumSpecialChar;i++)
+                {
+                    special = special + " " + Program.user[Login_Form.index].Passwort.PasswortEigenschaften.specialChar[i];
+                }
+                this.tbx_UserConfig.Text = "MinValue: " + Program.user[Login_Form.index].Passwort.PasswortEigenschaften.minimumPwLength.ToString() + Environment.NewLine +
+                    "MaxValue: " + Program.user[Login_Form.index].Passwort.PasswortEigenschaften.maximumPwLength.ToString() + Environment.NewLine +
+                    "Special Charakter: " + special + Environment.NewLine +
+                    "Min_Spcial_Value: " + Program.user[Login_Form.index].Passwort.PasswortEigenschaften.minimumSpecialChar.ToString() + Environment.NewLine;
                 data_table.Columns.Add("Username");
                 //data_table.Columns.Add("Passwort");
                 data_table.Columns.Add("Link");
@@ -39,7 +51,12 @@ namespace PasswortSaveKlassenTest
                 MessageBox.Show(ex.ToString());
             }
         }
-
+        /// <summary>
+        /// Button für das Editieren der ausgewählten Zeile.
+        /// Schaltet die Textboxen auf der rechten Seite frei
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_edit_Click(object sender, EventArgs e)
         {
             try
@@ -53,6 +70,8 @@ namespace PasswortSaveKlassenTest
                 this.btn_generator.Enabled = true;
                 this.btn_generator.Visible = true;
                 this.btn_new.Visible = false;
+                this.btn_copy.Visible = false;
+                this.btn_change.Visible = false;
 
                 int Zeile = this.dgv_Liste.CurrentCellAddress.Y;
                 tbx_username.Text = Program.benutzer[Zeile].Benutzername;
@@ -67,7 +86,11 @@ namespace PasswortSaveKlassenTest
             }
 
         }
-
+        /// <summary>
+        /// Erstellen eines neuen Eintrages im Data Grid View
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_new_Click(object sender, EventArgs e)
         {
             try
@@ -81,6 +104,8 @@ namespace PasswortSaveKlassenTest
                 this.btn_generator.Enabled = true;
                 this.btn_generator.Visible = true;
                 this.btn_edit.Visible = false;
+                this.btn_copy.Visible = false;
+                this.btn_change.Visible = false;
             }
             catch (Exception ex)
             {
@@ -88,7 +113,11 @@ namespace PasswortSaveKlassenTest
             }
 
         }
-
+        /// <summary>
+        /// Kopiert den Inhalt von der Passwort Textbox in die Zwischenablage
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_copy_Click(object sender, EventArgs e)
         {
             this.tbx_password.Enabled = true;
@@ -96,7 +125,12 @@ namespace PasswortSaveKlassenTest
             this.tbx_password.Copy();
             this.tbx_password.Enabled = false;
         }
-
+        /// <summary>
+        /// Speichert die Daten in das Data-Gried View!
+        /// Jedoch noch nicht in die .bin File.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_save_Click(object sender, EventArgs e)
         {
             try
@@ -124,6 +158,8 @@ namespace PasswortSaveKlassenTest
                     this.btn_generator.Visible = false;
                     this.btn_save.Visible = false;
                     this.btn_edit.Visible = true;
+                    this.btn_change.Visible = true;
+                    this.btn_copy.Visible = true;
 
 #if (TIMECHECK)
                         string laufzeit = string.Format("Benötigte Zeit zum Paswortcheck: {0}µs.", Program.stopw.Elapsed.TotalMilliseconds * 1000);
@@ -144,7 +180,6 @@ namespace PasswortSaveKlassenTest
             {
                 MessageBox.Show(ex.ToString());
             }
-            MessageBox.Show("Gespeichert!");
         }
 
         private void btn_ok_Click(object sender, EventArgs e)
@@ -179,6 +214,8 @@ namespace PasswortSaveKlassenTest
                 this.btn_generator.Visible = false;
                 this.btn_ok.Visible = false;
                 this.btn_new.Visible = true;
+                this.btn_copy.Visible = true;
+                this.btn_change.Visible = true;
             }
             catch (Exception ex)
             {
@@ -186,7 +223,11 @@ namespace PasswortSaveKlassenTest
             }
 
         }
-
+        /// <summary>
+        /// Generiert ein neues Passwort, mit den User definierten Passworteigenschaften
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_generator_Click(object sender, EventArgs e)
         {
             try
@@ -202,7 +243,11 @@ namespace PasswortSaveKlassenTest
                 MessageBox.Show(ex.ToString());
             }
         }
-
+        /// <summary>
+        /// Wird die From geschlossen, werden die Daten in das entsprechende File verschlüsselt gespeichert.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Passwort_Form_FormClosing(object sender, FormClosingEventArgs e)
         {
             Program.stopw.Restart();
@@ -241,6 +286,7 @@ namespace PasswortSaveKlassenTest
         {
             try
             {
+                this.btn_change.Visible = false;
                 this.tbx_details.Enabled = true;
                 this.tbx_password.Enabled = true;
                 this.tbx_username.Enabled = true;
@@ -250,6 +296,7 @@ namespace PasswortSaveKlassenTest
                 this.btn_generator.Enabled = true;
                 this.btn_generator.Visible = true;
                 this.btn_edit.Visible = false;
+                this.btn_copy.Visible = false;
             }
             catch (Exception ex)
             {
@@ -279,7 +326,6 @@ namespace PasswortSaveKlassenTest
 
         private void btn_SaveNew_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Login_Form.index.ToString());
             if (Passw.CheckPasswort(this.tbx_newPassword.Text, Program.user[Login_Form.index].Passwort.PasswortEigenschaften)==false)
             {
                 
