@@ -13,6 +13,7 @@ namespace PasswortSaveKlassenTest
         public static List<Data> user;
         public static List<Data> benutzer = new List<Data>();
         public static Stopwatch stopw = new Stopwatch();
+        public static Stopwatch speedTestWatch = new Stopwatch();
         
         public static byte[] AESiV = new byte[] { 0xcf, 0x5e, 0x46, 0x20, 0x45, 0x5c, 0xd7, 0x19, 0x0f, 0xcb, 0x53, 0xed, 0xe8, 0x74, 0xf1, 0xa8 };
         public static byte[] AESkEY = new byte[] { 0x11, 0x5e, 0x46, 0x20, 0x45, 0x5c, 0xd7, 0x19, 0x0f, 0xcb, 0x53, 0xed, 0xe8, 0x74, 0xf1, 0xa8 };
@@ -27,6 +28,9 @@ namespace PasswortSaveKlassenTest
         {
             try
             {
+#if SPEEDTEST
+                speedTestWatch.Restart();
+#endif
                 //Testweises Erstellen einer User.bin (Enthält die Daten der Benutzer)
                 //Data.ReturnCode code;
                 

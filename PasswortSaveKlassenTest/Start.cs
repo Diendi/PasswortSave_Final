@@ -27,6 +27,11 @@ namespace PasswortSaveKlassenTest
             {
                 btnLogin.Visible = true;
             }
+#if SPEEDTEST
+            this.Hide();
+            Login_Form login = new Login_Form(); 
+            login.Show();   
+#endif
         }
         /// <summary>
         /// Durch drücken des Button, wird die Login-Form aufgerufen

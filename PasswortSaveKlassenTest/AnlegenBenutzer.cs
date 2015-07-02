@@ -37,7 +37,7 @@ namespace PasswortSaveKlassenTest
             bool status_ep_value = true;
             bool status_ep_non = true;
             bool status_ep_special = true;
-            bool status_ep_doppel = true;
+            bool status_ep_doppel = false;
             bool status_ep_non_min = true;
             byte nud_max_int = 0, nud_min_int=0, nud_non_int=0;
             if(nud_max.Value< nud_min.Value)
@@ -91,7 +91,6 @@ namespace PasswortSaveKlassenTest
                             else
                             {
                                 errorProvider_doppelt.Clear();
-                                status_ep_doppel = false;
                             }    
                         }
                         if (anzahl > 1)
@@ -124,22 +123,29 @@ namespace PasswortSaveKlassenTest
             if (status_ep_value == false && status_ep_non == false && status_ep_special == false && status_ep_doppel==false && status_ep_non_min == false)
             {
                 Passw.UserConfig neu = new Passw.UserConfig(nud_min_int,nud_max_int,nud_non_int,sonderzeichen);
-                Passw neues_passwort = new Passw(this.tbx_password.Text,neu);
-                Data.ReturnCode code;
-                string pfad = @"..\" + this.tbx_username.Text + ".bin";
-                Data neuer_User = new Data(this.tbx_username.Text, neues_passwort, pfad, neu.ToString(), out code);
-                if (code==Data.ReturnCode.noError)
+                if (Passw.CheckPasswort(this.tbx_password.Text, neu))
                 {
-                    Program.user.Add(neuer_User);
-                    Data.SchreibeDatei(@"..\user.bin", Program.user, Program.AESkEY, Program.AESiV);
-                    Start erneut = new Start();
-                    erneut.Show();
-                    this.Hide();
-                    errorProvider_last.Clear();
+                    errorProvider_last.SetError(btnSave, "Passwort ungültig!");
                 }
                 else
                 {
-                    errorProvider_last.SetError(btnSave, code.ToString());
+                    Passw neues_passwort = new Passw(this.tbx_password.Text, neu);
+                    Data.ReturnCode code;
+                    string pfad = @"..\" + this.tbx_username.Text + ".bin";
+                    Data neuer_User = new Data(this.tbx_username.Text, neues_passwort, pfad, neu.ToString(), out code);
+                    if (code == Data.ReturnCode.noError)
+                    {
+                        Program.user.Add(neuer_User);
+                        Data.SchreibeDatei(@"..\user.bin", Program.user, Program.AESkEY, Program.AESiV);
+                        Start erneut = new Start();
+                        erneut.Show();
+                        this.Hide();
+                        errorProvider_last.Clear();
+                    }
+                    else
+                    {
+                        errorProvider_last.SetError(btnSave, code.ToString());
+                    }
                 }
             }
         }

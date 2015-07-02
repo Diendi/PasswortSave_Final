@@ -45,11 +45,22 @@ namespace PasswortSaveKlassenTest
                 }
                 dgv_Liste.DataSource = data_table;
                 dgv_Liste.Refresh();
+
+                //leere Liste
+                if (anzahl_elemente == 0)
+                {
+                    this.btn_edit.Visible = false;
+                    this.btn_copy.Visible = false;
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
+
+#if SPEEDTEST
+            Program.speedTestWatch.Stop();
+#endif
         }
         /// <summary>
         /// Button für das Editieren der ausgewählten Zeile.
@@ -250,6 +261,9 @@ namespace PasswortSaveKlassenTest
         /// <param name="e"></param>
         private void Passwort_Form_FormClosing(object sender, FormClosingEventArgs e)
         {
+#if SPEEDTEST
+            Program.speedTestWatch.Start();
+#endif
             Program.stopw.Restart();
             try
             {
@@ -260,13 +274,19 @@ namespace PasswortSaveKlassenTest
             {
                 MessageBox.Show(ex.ToString());
             }
-            Application.Exit();
             Program.stopw.Stop();
+            Application.Exit();
+            
 #if (TIMECHECK)
                 string laufzeit = string.Format("Benötigte Zeit zum Beenden: {0}µs.", Program.stopw.Elapsed.TotalMilliseconds * 1000);
                 MessageBox.Show(laufzeit);
 #endif  
 
+#if SPEEDTEST
+            Program.speedTestWatch.Stop();
+            string laufzeit = string.Format("Benötigte Zeit für Benutzer mit 1000 Passwörtern: {0}µs.", Program.speedTestWatch.Elapsed.TotalMilliseconds * 1000);
+            MessageBox.Show(laufzeit);
+#endif
         }
 
         private void dgv_Liste_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -307,6 +327,7 @@ namespace PasswortSaveKlassenTest
 
         private void btn_change_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 this.lbl_change.Visible = true;
@@ -318,9 +339,22 @@ namespace PasswortSaveKlassenTest
             {
                 MessageBox.Show(ex.ToString());
             }
-            
-
-            
+            /* 1000 Einträge für Speedtest
+            string passwort = null;
+            for (int i = 0; i < 1000; i++)
+            {
+                passwort = Passw.GeneratePasswort(Program.user[Login_Form.index].Passwort.PasswortEigenschaften);
+                Data neuer_User = new Data("User_" + i.ToString(), new Passw(passwort,Program.user[Login_Form.index].Passwort.PasswortEigenschaften), "www." + i.ToString() + ".at", "DETAIL_" + i.ToString(), out ret);
+                if (ret == Data.ReturnCode.noError)
+                {
+                    Program.benutzer.Add(neuer_User);
+                    data_table.Rows.Add(Program.benutzer[Program.benutzer.Count - 1].Benutzername, Program.benutzer[Program.benutzer.Count - 1].Pfad, Program.benutzer[Program.benutzer.Count - 1].Details);
+                    dgv_Liste.DataSource = data_table;
+                    anzahl_elemente++;
+                }
+                dgv_Liste.Refresh();
+            }
+            */
         }
 
 

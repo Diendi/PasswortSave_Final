@@ -72,7 +72,7 @@
             this.btnCancel.Location = new System.Drawing.Point(687, 357);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 0;
+            this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -82,7 +82,7 @@
             this.btnSave.Location = new System.Drawing.Point(606, 357);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 1;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -115,7 +115,7 @@
             0});
             this.nud_min.Name = "nud_min";
             this.nud_min.Size = new System.Drawing.Size(120, 20);
-            this.nud_min.TabIndex = 4;
+            this.nud_min.TabIndex = 1;
             // 
             // nud_max
             // 
@@ -127,7 +127,7 @@
             0});
             this.nud_max.Name = "nud_max";
             this.nud_max.Size = new System.Drawing.Size(107, 20);
-            this.nud_max.TabIndex = 5;
+            this.nud_max.TabIndex = 0;
             // 
             // flp_Size
             // 
@@ -161,7 +161,8 @@
             this.tbx_Info.ReadOnly = true;
             this.tbx_Info.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tbx_Info.Size = new System.Drawing.Size(223, 346);
-            this.tbx_Info.TabIndex = 8;
+            this.tbx_Info.TabIndex = 9;
+            this.tbx_Info.TabStop = false;
             // 
             // label4
             // 
@@ -182,7 +183,7 @@
             0});
             this.nud_nonletters.Name = "nud_nonletters";
             this.nud_nonletters.Size = new System.Drawing.Size(120, 20);
-            this.nud_nonletters.TabIndex = 10;
+            this.nud_nonletters.TabIndex = 2;
             // 
             // errorProvider_nonletters
             // 
@@ -193,7 +194,7 @@
             this.nud_special.Location = new System.Drawing.Point(11, 160);
             this.nud_special.Name = "nud_special";
             this.nud_special.Size = new System.Drawing.Size(110, 20);
-            this.nud_special.TabIndex = 12;
+            this.nud_special.TabIndex = 3;
             // 
             // label5
             // 
@@ -209,7 +210,7 @@
             this.tbx_special.Location = new System.Drawing.Point(11, 200);
             this.tbx_special.Name = "tbx_special";
             this.tbx_special.Size = new System.Drawing.Size(110, 20);
-            this.tbx_special.TabIndex = 14;
+            this.tbx_special.TabIndex = 4;
             // 
             // errorProvider_special
             // 
@@ -233,14 +234,14 @@
             this.tbx_username.Location = new System.Drawing.Point(11, 244);
             this.tbx_username.Name = "tbx_username";
             this.tbx_username.Size = new System.Drawing.Size(236, 20);
-            this.tbx_username.TabIndex = 16;
+            this.tbx_username.TabIndex = 5;
             // 
             // tbx_password
             // 
             this.tbx_password.Location = new System.Drawing.Point(11, 294);
             this.tbx_password.Name = "tbx_password";
             this.tbx_password.Size = new System.Drawing.Size(236, 20);
-            this.tbx_password.TabIndex = 17;
+            this.tbx_password.TabIndex = 6;
             // 
             // label7
             // 

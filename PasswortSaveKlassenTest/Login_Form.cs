@@ -16,6 +16,11 @@ namespace PasswortSaveKlassenTest
         public Login_Form()
         {
             InitializeComponent();
+#if SPEEDTEST
+            tbx_LoginName.Text = "speedtest";
+            tbx_password.Text = "all4speed!!!";
+            Program.speedTestWatch.Stop();
+#endif
         }
         /// <summary>
         /// Überprüft ob Eingabe richtig ist und gibt öffnet bei richtiger Eingabe die nächste Form
@@ -24,6 +29,9 @@ namespace PasswortSaveKlassenTest
         /// <param name="e"></param>
         private void btnOK_Click(object sender, EventArgs e)
         {
+#if SPEEDTEST
+            Program.speedTestWatch.Start();
+#endif
             bool right = false;
             
             for (int i = 0; i < Program.user.Count; i++)
